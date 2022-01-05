@@ -9,14 +9,26 @@ import SwiftUI
 // we need this to import all the framework by swift
 
 struct ContentView: View {
-    @State private var name = ""
+    @State private var chechAmount = ""
+    @State private var numberOfPeople = 2
+    @State private var tipPercentage = 2
+    
+    let tipPercentages = [10, 15, 20, 25, 0]
+    
     var body: some View {
-        Form {
-            
-            TextField("Enter your name", text: $name)
-            // if we don't use $ sign there won't be two way binding and we will face error
-            Text("Your name is : \(name)")
-            
+        Form{
+            Section{
+                TextField("Amount", text: $chechAmount)
+                    .keyboardType(.decimalPad)
+            }
+            Picker("Number of people", selection: $numberOfPeople){
+                ForEach(2 ..< 100){
+                    Text("\($0) people")
+                }
+            }
+            Section{
+                Text("₹ \(chechAmount)")
+            }
         }
     }
 }
