@@ -9,10 +9,14 @@ import SwiftUI
 // we need this to import all the framework by swift
 
 struct ContentView: View {
-    @State var tapCount = 0 // @state is used here to change the data in UI in real time
+    @State private var name = ""
     var body: some View {
-        Button("Tap Count \(tapCount)"){
-            self.tapCount += 1
+        Form {
+            
+            TextField("Enter your name", text: $name)
+            // if we don't use $ sign there won't be two way binding and we will face error
+            Text("Your name is : \(name)")
+            
         }
     }
 }
